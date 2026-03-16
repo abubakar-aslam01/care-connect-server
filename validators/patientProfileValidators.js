@@ -1,0 +1,30 @@
+import { body } from 'express-validator';
+
+export const updatePatientProfileValidator = [
+  body('name').optional().trim().notEmpty(),
+  body('email').optional().isEmail().withMessage('Valid email required').normalizeEmail(),
+  body('phone').optional().trim(),
+  body('dateOfBirth').optional().isISO8601().toDate(),
+  body('gender').optional().isIn(['Male', 'Female', 'Other', 'Prefer not to say']),
+  body('bloodGroup').optional().isIn(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']),
+  body('maritalStatus').optional().isIn(['Single', 'Married', 'Divorced', 'Widowed', 'Separated', 'Other']),
+  body('address.street').optional().trim(),
+  body('address.city').optional().trim(),
+  body('address.state').optional().trim(),
+  body('address.postalCode').optional().trim(),
+  body('emergencyContact.name').optional().trim(),
+  body('emergencyContact.phone').optional().trim(),
+  body('emergencyContact.relationship').optional().trim(),
+  body('allergies').optional().isArray(),
+  body('allergies.*').optional().trim(),
+  body('chronicDiseases').optional().isArray(),
+  body('chronicDiseases.*').optional().trim(),
+  body('pastSurgeries').optional().isArray(),
+  body('pastSurgeries.*').optional().trim(),
+  body('familyHistory').optional().trim(),
+  body('smokingStatus').optional().isBoolean().toBoolean(),
+  body('alcoholConsumption').optional().isBoolean().toBoolean(),
+  body('height').optional().isNumeric({ min: 0 }).toFloat(),
+  body('weight').optional().isNumeric({ min: 0 }).toFloat(),
+  body('profileImage').optional().trim()
+];
