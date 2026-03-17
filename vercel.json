@@ -1,0 +1,19 @@
+{
+  "installCommand": "npm install --prefix care-connect-client && npm install --prefix care-connect-server && npm install --prefix api",
+  "buildCommand": "npm run build --prefix care-connect-client",
+  "builds": [
+    {
+      "src": "care-connect-client/package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist" }
+    },
+    {
+      "src": "api/index.mjs",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/api/index.mjs" },
+    { "src": "/(.*)", "dest": "/index.html" }
+  ]
+}
