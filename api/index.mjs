@@ -1,6 +1,6 @@
 import serverless from 'serverless-http';
-import app from '../care-connect-server/app.js';
-import { connectDB } from '../care-connect-server/config/db.js';
+import app from '../app.js';
+import { connectDB } from '../config/db.js';
 
 let dbConnection;
 
